@@ -22,9 +22,10 @@ module.exports = () => {
      // Add and configure workbox plugins for a service worker and manifest file.
      new InjectManifest({
       swSrc: './src-sw.js',
+      swDest: 'src-sw.js',
     }),
     new WebpackPwaManifest({
-      filename: 'manifest.json',
+      // filename: 'manifest.json',
       inject: true,
       fingerprints: true,
       name: 'Your App Name',
@@ -33,11 +34,14 @@ module.exports = () => {
       background_color: '#ffffff',
       start_url: '/',
       display: 'standalone',
+      publicPath: './',
+
       icons: [
         {
           src: path.resolve('src/images/logo.png'),
           sizes: [96, 128, 192, 256, 384, 512],
           purpose: 'any maskable',
+          destination: path.join('assets', 'icons'),
         },
       ],
     }),
