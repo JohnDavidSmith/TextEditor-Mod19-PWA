@@ -27,7 +27,7 @@
 [The Text Editor](https://github.com/JohnDavidSmith/TextEditor-Mod19-PWA)
 
 ## Heroku link
-
+*
 
 ## Credits
 * 
