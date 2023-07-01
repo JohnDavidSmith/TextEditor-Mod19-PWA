@@ -27,7 +27,7 @@ module.exports = () => {
     new WebpackPwaManifest({
       // filename: 'manifest.json',
       inject: true,
-      fingerprints: true,
+      fingerprints: false,
       name: 'Your App Name',
       short_name: 'App Name',
       theme_color: '#ffffff',
