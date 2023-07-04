@@ -10,7 +10,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
     deferredPrompt = event; // Store the event for later use 
     butInstall.addEventListener('click', installApp);
 });
-
+// I need to make comment
 // TODO: Implement a click event handler on the `butInstall` element
 async function installApp() {
       // TODO: Check if the `beforeinstallprompt` event was previously fired and captured
