@@ -2,27 +2,36 @@
 const butInstall = document.getElementById('buttonInstall');
 
 // Logic for installing the PWA
+let deferredPrompt; // Store the deferred prompt globally
+// Logic for installing the PWA
 // TODO: Add an event handler to the `beforeinstallprompt` event
 window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault(); // Prevent the default behavior of the event
-    window.deferredPrompt = event; // Store the event for later use   
+    deferredPrompt = event; // Store the event for later use 
+    butInstall.addEventListener('click', installApp);
 });
 
 // TODO: Implement a click event handler on the `butInstall` element
-butInstall.addEventListener('click', async () => {
+async function installApp() {
       // TODO: Check if the `beforeinstallprompt` event was previously fired and captured
-  if (window.deferredPrompt) {
+  if (deferredPrompt) {
+    try {
     // Show the installation prompt using the captured event
-    window.deferredPrompt.prompt();
-    const result = await window.deferredPrompt.userChoice;
+    deferredPrompt.prompt();
+    const result = await deferredPrompt.userChoice;
+
     if (result.outcome === 'accepted') {
       console.log('App installed');
     } else {
       console.log('App installation declined');
     }
-    window.deferredPrompt = null; // Reset the deferredPrompt variable
+    deferredPrompt = null; // Reset the deferredPrompt variable
+    butInstall.removeEventListener('click', installApp);
+  } catch (err) {
+    console.error('Error installing the app:', err);
   }
-});
+  }
+}
 
 // TODO: Add an handler for the `appinstalled` event
 window.addEventListener('appinstalled', (event) => {
@@ -30,3 +39,11 @@ window.addEventListener('appinstalled', (event) => {
   console.log('App installed successfully');
 });
 
+// Check if service workers are supported
+if ('serviceWorker' in navigator) {
+  // register workbox service worker
+  const workboxSW = new Workbox('/src-sw.js');
+  workboxSW.register();
+} else {
+  console.error('Service workers are not supported in this browser.');
+}
