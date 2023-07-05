@@ -47,7 +47,8 @@ module.exports = () => {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      chunks: ['main'],
+      // chunks: ['main'],
+      title: "jate"
     }), 
     ],
 
