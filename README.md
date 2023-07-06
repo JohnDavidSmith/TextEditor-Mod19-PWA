@@ -27,7 +27,7 @@
 [The Text Editor](https://github.com/JohnDavidSmith/TextEditor-Mod19-PWA)
 
 ## Heroku link
-*
+[The Text Editor](https://intense-sierra-06947-901fe1a395cd.herokuapp.com/)
 
 ## Credits
 * 
